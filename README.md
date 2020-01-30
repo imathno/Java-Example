@@ -1,6 +1,8 @@
 # Creating Community Small Groups
 
 Here you will describe your term project. Remember to write your names.
+[More detailed instructions here](SmallGroups-Graph.pdf)
+
 
 - - - - - - - - - E r a s e    t h i s    o n c e    y o u ' r e    d o n e 
 
