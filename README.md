@@ -22,10 +22,10 @@ A work by: McDonald Berger and Igor Tzankoven
 *Describe what your project is about and what language you used*
 
 ## Requirements
-*The requirements of the program, i.e. Python 3.1*
+*The requirements of the program, i.e. Python 3.1, what libraries are needed*
 
 ## User Manual
-*Once a person clones this into their computer how the person is supposed to run the program*
+*Once a person clones this into their computer how the person is supposed to run the program, add screenshots showing how your program works, also add here the link to the Youtube video showing the program running*
 
 ## Reflection
 *Write the reflection about getting the small groups in the minimum number of iterations, etc.*
