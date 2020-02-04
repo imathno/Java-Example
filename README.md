@@ -1,11 +1,9 @@
 # Creating Community Small Groups
 
+_**You should erase this the text below as you fill it up with your own text**_
+
 Here you will describe your term project. Remember to write your names.
 [More detailed instructions here](SmallGroups-Graph.pdf)
-
-
-- - - - - - - - - E r a s e    t h i s    o n c e    y o u ' r e    d o n e 
-
 
 You will need to include in this repository:
 - `group1.txt` a file with 16 names
