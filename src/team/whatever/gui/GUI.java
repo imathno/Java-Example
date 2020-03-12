@@ -1,6 +1,6 @@
 //Trent Howell
 //Community Small Groups GUI
-package team.whatever.gui
+package team.whatever.gui;
 
 import javax.swing.*;
 import java.awt.event.*;
