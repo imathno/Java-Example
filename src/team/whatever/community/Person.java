@@ -19,7 +19,7 @@ public class Person
 		name = n;
 		spouse = s;
       married = m;
-		beenVisited = new string[people-1];
+		beenVisited = new String[people-1];
 		
       //Handles married persons, or sets unvisited to the correct value if not married
 		if(married)
