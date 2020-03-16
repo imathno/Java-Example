@@ -14,9 +14,10 @@ You will need to include in this repository:
 This document should be organized as follows:
 
 # Creating Community Small Groups
-A work by: McDonald Berger and Igor Tzankoven
+A work by: Issah Mathno and Trent Howell
 
-*Write an introduction to your work*
+Small groups are a staple of many churches aroung the globe, however disputes always seem to surface over the structure and scheduling of these meetings.
+So what if a more automated system existed that can schedule these groups with a particular criteria in mind?
 
 ## Description
 *Describe what your project is about and what language you used*
