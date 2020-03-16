@@ -29,18 +29,18 @@ public class GUI extends JPanel implements ActionListener {
         group3.setActionCommand("G3");
         
         //Initialize the selection for group size
-        String[] sizeOptions = {"3","4","5","6"};
+        String[] sizeOptions = {"3 People per group","4 People per group","5 People per group","6 People per group"};
         groupSize = new JComboBox(sizeOptions);
         groupSize.setSelectedIndex(1);
         theGroupSize = 4;
         
-        //Adds a listener to the buttons to ensure clicking them performs the appropriate task
+        //Adds a listener to the GUI elements to ensure interacting with them performs the appropriate task
         group1.addActionListener(this);
         group2.addActionListener(this);
         group3.addActionListener(this);
         groupSize.addActionListener(this);
         
-        //Add the buttons to the GUI object
+        //Add the buttons and selection box to the GUI object
         add(group1);
         add(group2);
         add(group3);
@@ -71,9 +71,27 @@ public class GUI extends JPanel implements ActionListener {
             //Once finished with main program then this button will run the graph maker with group3.txt as the input
          }
          
+         //Handles if the group size is updated
          JComboBox update = (JComboBox)e.getSource();
-         String newSize = (String)update.getSelectedItem();
-         theGroupSize = Integer.parseInt(newSize);
+         if (update != null)
+         {
+             if(update.getSelectedIndex() == 0)
+             {
+                 theGroupSize = 3;
+             }
+             else if (update.getSelectedIndex() == 1)
+             {
+                 theGroupSize = 4;
+             }
+             else if (update.getSelectedIndex() == 2)
+             {
+                 theGroupSize = 5;
+             }
+             else if (update.getSelectedIndex() == 3)
+             {
+                 theGroupSize = 6;
+             }
+         }
     }
     
     //Initializes the actual GUI with our GUI object
