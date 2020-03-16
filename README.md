@@ -17,7 +17,7 @@ This document should be organized as follows:
 A work by: Issah Mathno and Trent Howell
 
 Small groups are a staple of many churches aroung the globe, however disputes always seem to surface over the structure and scheduling of these meetings.
-So what if a more automated system existed that can schedule these groups with a particular criteria in mind?
+So what if a more automated system existed that can schedule these groups with a particular criteria in mind? *write an introduction to your project*
 
 ## Description
 Our project is about creating a schedule of small groups that ensures that every person in the system visits everyone else's house who is in the system. By creating a list of lists of small groupings we can perfectly distribute the load of hosting responsibilities to every person in the small group system. We decided to implement our solution using Java and the jgrapht graph implementation.
