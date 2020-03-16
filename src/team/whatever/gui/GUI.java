@@ -7,6 +7,8 @@ import java.awt.event.*;
 
 public class GUI extends JPanel implements ActionListener {
     protected JButton group1, group2, group3;
+    protected JComboBox groupSize;
+    public int theGroupSize;
     
     //create our GUI object to hold all of the buttons for interaction
     public GUI()
@@ -26,15 +28,23 @@ public class GUI extends JPanel implements ActionListener {
         group3.setMnemonic(KeyEvent.VK_D);
         group3.setActionCommand("G3");
         
+        //Initialize the selection for group size
+        String[] sizeOptions = {"3","4","5","6"};
+        groupSize = new JComboBox(sizeOptions);
+        groupSize.setSelectedIndex(1);
+        theGroupSize = 4;
+        
         //Adds a listener to the buttons to ensure clicking them performs the appropriate task
         group1.addActionListener(this);
         group2.addActionListener(this);
         group3.addActionListener(this);
+        groupSize.addActionListener(this);
         
         //Add the buttons to the GUI object
         add(group1);
         add(group2);
         add(group3);
+        add(groupSize);
     }
     
     //Setup the actions of our buttons
@@ -60,6 +70,10 @@ public class GUI extends JPanel implements ActionListener {
             //Placeholder code above
             //Once finished with main program then this button will run the graph maker with group3.txt as the input
          }
+         
+         JComboBox update = (JComboBox)e.getSource();
+         String newSize = (String)update.getSelectedItem();
+         theGroupSize = Integer.parseInt(newSize);
     }
     
     //Initializes the actual GUI with our GUI object
