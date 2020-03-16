@@ -2,7 +2,7 @@
 //Community Small Groups Person Object
 package team.whatever.community;
 
-import java.util.*
+import java.util.*;
 
 public class Person 
 {
@@ -25,7 +25,7 @@ public class Person
 		if(married)
 		{
 			unvisited = people-2;
-			beenVisited[0]
+			beenVisited[0] = spouse;
 		}
 		else
 		{
