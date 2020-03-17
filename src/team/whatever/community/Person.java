@@ -56,11 +56,7 @@ public class Person
 	public boolean alreadyVisited(String visitor)
 	{
 		List<String> check = Arrays.asList(beenVisited);
-
-		if(check.contains(visitor))
-			return false;
-		else
-			return true;
+                return !(check.contains(visitor));
 	}
 	
    //Adds the visitor to the list of people who have visited this person
