@@ -7,6 +7,8 @@ import java.awt.event.*;
 
 public class GUI extends JPanel implements ActionListener {
     protected JButton group1, group2, group3;
+    protected JComboBox groupSize;
+    public int theGroupSize;
     
     //create our GUI object to hold all of the buttons for interaction
     public GUI()
@@ -26,15 +28,23 @@ public class GUI extends JPanel implements ActionListener {
         group3.setMnemonic(KeyEvent.VK_D);
         group3.setActionCommand("G3");
         
-        //Adds a listener to the buttons to ensure clicking them performs the appropriate task
+        //Initialize the selection for group size
+        String[] sizeOptions = {"3 People per group","4 People per group","5 People per group","6 People per group"};
+        groupSize = new JComboBox(sizeOptions);
+        groupSize.setSelectedIndex(1);
+        theGroupSize = 4;
+        
+        //Adds a listener to the GUI elements to ensure interacting with them performs the appropriate task
         group1.addActionListener(this);
         group2.addActionListener(this);
         group3.addActionListener(this);
+        groupSize.addActionListener(this);
         
-        //Add the buttons to the GUI object
+        //Add the buttons and selection box to the GUI object
         add(group1);
         add(group2);
         add(group3);
+        add(groupSize);
     }
     
     //Setup the actions of our buttons
@@ -59,6 +69,28 @@ public class GUI extends JPanel implements ActionListener {
             System.out.println("Group3!");
             //Placeholder code above
             //Once finished with main program then this button will run the graph maker with group3.txt as the input
+         }
+         
+         //Handles if the group size is updated
+         JComboBox update = (JComboBox)e.getSource();
+         if (update != null)
+         {
+             if(update.getSelectedIndex() == 0)
+             {
+                 theGroupSize = 3;
+             }
+             else if (update.getSelectedIndex() == 1)
+             {
+                 theGroupSize = 4;
+             }
+             else if (update.getSelectedIndex() == 2)
+             {
+                 theGroupSize = 5;
+             }
+             else if (update.getSelectedIndex() == 3)
+             {
+                 theGroupSize = 6;
+             }
          }
     }
     
