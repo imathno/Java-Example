@@ -13,26 +13,30 @@ public class Person
 	int unvisited;
 	
    //Constructor for making a new person object
-	public Person(String n, String s, boolean m, int people)
+	public Person(String n, String s, boolean m)
 	{
-      //Sets the value of the name, spouse and makes the beenVisited array the correct size
+        //Sets the value of the name, spouse and makes the beenVisited array the correct size
 		name = n;
 		spouse = s;
-      married = m;
-		beenVisited = new String[people-1];
-		
-      //Handles married persons, or sets unvisited to the correct value if not married
-		if(married)
-		{
-			unvisited = people-2;
-			beenVisited[0] = spouse;
-		}
-		else
-		{
-			unvisited = people-1;
-		}	
-   }
+                married = m;	
+        }
    
+    //Initializes the beenVisited array to be the correct size and contain any initial data
+        public void initBeenVisited(int numPeople)
+        {
+            beenVisited = new String[numPeople];
+            
+            if(married)
+            {
+                unvisited = numPeople - 2;
+                beenVisited[0] = spouse;
+            }
+            else
+            {
+                unvisited = numPeople - 1;
+            }
+        }
+        
    //Returns the spouse of the Person if they exist
 	public String getSpouse()
 	{
