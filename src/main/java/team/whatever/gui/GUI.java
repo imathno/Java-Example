@@ -3,7 +3,9 @@
 package team.whatever.gui;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class GUI extends JPanel implements ActionListener {
     protected JButton group1, group2, group3;
