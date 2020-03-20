@@ -31,7 +31,17 @@ public class Person {
 	public Person(String name) {
 		this(name, null);
 	}
-
+        
+        /**
+         * Get the name of the person
+         * thought this was necessary since name is a private member 
+         * with currently no method of accessing
+         * @return the name string
+         */
+        public String getName()
+        {
+                return NAME;
+        }
 	/**
 	 * Get the spouse of the person
 	 * @return the spouse person object or null

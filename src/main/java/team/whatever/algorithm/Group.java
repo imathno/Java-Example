@@ -15,7 +15,8 @@ public class Group {
         this.community = community;
     }
 
-    public Graph<Person, DefaultEdge> generateGraph() {
+    public Graph<Person, DefaultEdge> generateGraph() 
+    {
         return null;
     }
 }
