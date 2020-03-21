@@ -32,6 +32,10 @@ public class Person {
 		this(name, null);
 	}
 
+	public String getName() {
+		return this.NAME;
+	}
+
 	/**
 	 * Get the spouse of the person
 	 * @return the spouse person object or null
