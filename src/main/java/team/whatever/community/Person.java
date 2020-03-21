@@ -5,6 +5,8 @@
  */
 package team.whatever.community;
 
+import java.util.Objects;
+
 public class Person {
 
 	//Initializing the name,spouse, and other important variables
@@ -47,5 +49,18 @@ public class Person {
    //Returns if the person is married
 	public boolean hasSpouse() {
 		return MARRIED;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Person person = (Person) o;
+		return Objects.equals(NAME, person.NAME);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(NAME);
 	}
 }
