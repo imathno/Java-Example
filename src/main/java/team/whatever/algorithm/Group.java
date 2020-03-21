@@ -22,7 +22,6 @@ public class Group {
 
     public Group(List<Person> community) {
         this.COMMUNITY = community;
-        this.notHosted = new ArrayList<Person>(community);
         int actualSize = community.size();
 
         for (int i = 0; i < community.size(); i++) {
@@ -31,27 +30,42 @@ public class Group {
         }
 
         this.numOfGroups = actualSize / GROUP_SIZE;
-        this.iterations = (int)Math.ceil(community.size() / this.numOfGroups);
+        this.iterations = (int) Math.ceil(community.size() / (double) this.numOfGroups);
     }
 
     public Graph<List<List<Person>>, DefaultEdge> generateGraph() {
-        Graph<List<List<Person>>, DefaultEdge> finalGraph = new DefaultUndirectedGraph<List<List<Person>>, DefaultEdge>(DefaultEdge.class);
-        List<List<List<Person>>> addMeToFinal = new ArrayList<List<List<Person>>>();
+        Graph<List<List<Person>>, DefaultEdge> finalGraph = new DefaultUndirectedGraph<>(DefaultEdge.class);
+        List<List<List<Person>>> addMeToFinal = new ArrayList<>();
+        this.notHosted = new ArrayList<>(COMMUNITY);
         for (int i = 0; i < this.iterations; i++) {
-            List<List<Person>> iterationList = new ArrayList<List<Person>>();
+            List<List<Person>> iterationList = new ArrayList<>();
+            Map<String, Boolean> visiting = new HashMap<>();
+            if (notHosted.size() == 1) {
+                notHosted.add(COMMUNITY.get(0));
+            }
             for (int j = 0; j < this.numOfGroups; j++) {
-                Map<Person, Boolean> visiting = new HashMap<Person, Boolean>();
-                List<Person> groupList = new ArrayList<Person>();
+                List<Person> groupList = new ArrayList<>();
                 groupList.add(0, notHosted.get(0));
-                visiting.put(groupList.get(0), Boolean.TRUE);
+                visiting.put(groupList.get(0).getName(), Boolean.TRUE);
                 notHosted.remove(0);
 
                 for (int k = 1; k < this.GROUP_SIZE; k++) {
                     for (Person person : this.COMMUNITY) {
                         // Checks if the person is the host or is already visiting
-                        if (person != groupList.get(0) && !visiting.containsKey(person)) {
+                        if (!visiting.containsKey(person.getName())) {
                             groupList.add(person);
-                            visiting.put(person, Boolean.TRUE);
+                            visiting.put(person.getName(), Boolean.TRUE);
+                            break;
+                        }
+                    }
+                }
+
+                if (visiting.size() != this.numOfGroups) {
+                    for (Person person : this.COMMUNITY) {
+                        // Checks if the person is the host or is already visiting
+                        if (!visiting.containsKey(person.getName())) {
+                            groupList.add(person);
+                            visiting.put(person.getName(), Boolean.TRUE);
                             break;
                         }
                     }
