@@ -1,0 +1,36 @@
+Grouping for Week 1
+John Kate Philip Bethany 
+Fredrick Anna Joshua Willa 
+Edward Amy Richard Yolanda 
+Diana Robert Bart Olivia 
+Luke Jess Sam Dresden 
+Brianna Theo Vivian Rupert 
+Wilhelm Quincy Gurtrude George Philis 
+
+Grouping for Week 2
+Philip John Kate Bethany 
+Anna Fredrick Joshua Willa 
+Richard Edward Amy Yolanda 
+Robert Diana Bart Olivia 
+Sam Luke Jess Dresden 
+Vivian Brianna Theo Rupert 
+Quincy Wilhelm Gurtrude George Philis 
+
+Grouping for Week 3
+Bethany John Kate Philip 
+Joshua Fredrick Anna Willa 
+Yolanda Edward Amy Richard 
+Bart Diana Robert Olivia 
+Dresden Luke Jess Sam 
+Rupert Brianna Theo Vivian 
+Gurtrude Wilhelm Quincy George Philis 
+
+Grouping for Week 4
+Willa John Kate Philip 
+Olivia Bethany Fredrick Anna 
+George Philis Joshua Richard 
+Edward Amy Yolanda 
+Diana Robert Bart 
+Luke Jess Sam 
+Brianna Theo Dresden Vivian Rupert Wilhelm Quincy Gurtrude 
+
