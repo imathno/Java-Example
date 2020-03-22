@@ -1,20 +1,31 @@
-//Trent Howell
-//Community Small Groups GUI
+/**
+ * @author Trent Howell (howellt@spu.edu)
+ * @file GUI.java
+*/
 package team.whatever.gui;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import team.whatever.util.PersonParser;
+import team.whatever.community.Person;
+import java.util.List;
+
 
 public class GUI extends JPanel implements ActionListener {
-    protected JButton group1, group2, group3;
+    protected JButton group1, group2, group3, custom;
     protected JComboBox groupSize;
+    protected JTextField customGroup;
+    private String path;
     public int theGroupSize;
     
     //create our GUI object to hold all of the buttons for interaction
     public GUI()
     {
+        path = System.getProperty("user.dir");
+        
         //Initialize our first button and its action
         group1 = new JButton("Run Group 1");
         group1.setMnemonic(KeyEvent.VK_D);
@@ -30,6 +41,12 @@ public class GUI extends JPanel implements ActionListener {
         group3.setMnemonic(KeyEvent.VK_D);
         group3.setActionCommand("G3");
         
+        //Intialize the custome group button, its text field, and its action
+        custom = new JButton("Run Custom Group");
+        custom.setMnemonic(KeyEvent.VK_D);
+        custom.setActionCommand("CG");
+        customGroup = new JTextField(30);
+        
         //Initialize the selection for group size
         String[] sizeOptions = {"3 People per group","4 People per group","5 People per group","6 People per group"};
         groupSize = new JComboBox(sizeOptions);
@@ -40,6 +57,7 @@ public class GUI extends JPanel implements ActionListener {
         group1.addActionListener(this);
         group2.addActionListener(this);
         group3.addActionListener(this);
+        custom.addActionListener(this);
         groupSize.addActionListener(this);
         
         //Add the buttons and selection box to the GUI object
@@ -47,6 +65,8 @@ public class GUI extends JPanel implements ActionListener {
         add(group2);
         add(group3);
         add(groupSize);
+        add(custom);
+        add(customGroup);
     }
     
     //Setup the actions of our buttons
@@ -54,23 +74,65 @@ public class GUI extends JPanel implements ActionListener {
     {
          if ("G1".equals(e.getActionCommand()))
          {
-            System.out.println("Group1!");
-            //Placeholder code above
-            //Once finished with main program then this button will run the graph maker with group1.txt as the input
+            try
+            {
+                PersonParser ourPeople = new PersonParser(path + "\\data\\group1.txt");
+                List<Person> people = ourPeople.getPeople();
+                //then run the group algorithm with the list people
+            }
+        
+            catch (FileNotFoundException ex)  
+            {
+                //pops up an error message if the file isn't found
+                JOptionPane.showMessageDialog(null, "File not found!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
          }
          
          else if ("G2".equals(e.getActionCommand()))
          {
-            System.out.println("Group2!");
-            //Placeholder code above
-            //Once finished with main program then this button will run the graph maker with group2.txt as the input
+            try
+            {
+                PersonParser ourPeople = new PersonParser(path + "\\data\\group2.txt");
+                List<Person> people = ourPeople.getPeople();
+                //then run the group algorithm with the list people
+            }
+        
+            catch (FileNotFoundException ex)  
+            {
+                //pops up an error message if the file isn't found
+                JOptionPane.showMessageDialog(null, "File not found!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
          }
          
          else if ("G3".equals(e.getActionCommand()))
          {
-            System.out.println("Group3!");
-            //Placeholder code above
-            //Once finished with main program then this button will run the graph maker with group3.txt as the input
+            try
+            {
+            PersonParser ourPeople = new PersonParser(path + "\\data\\group3.txt");
+            List<Person> people = ourPeople.getPeople();
+            //then run the group algorithm with the list people
+            }
+        
+            catch (FileNotFoundException ex)  
+            {
+                //pops up an error message if the file isn't found
+                JOptionPane.showMessageDialog(null, "File not found!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
+         }
+         else if ("CG".equals(e.getActionCommand()))
+         {
+            try
+            {
+            PersonParser ourPeople = new PersonParser(path + "\\data\\" + customGroup.getText());
+            List<Person> people = ourPeople.getPeople();
+            //then run the group algorithm with the list people
+            }
+        
+            catch (FileNotFoundException ex)  
+            {
+                //pops up an error message if the file isn't found
+                JOptionPane.showMessageDialog(null, "File not found!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
          }
          
          //Handles if the group size is updated
