@@ -36,13 +36,11 @@ public class PersonParser {
             if (names.length != 1) {
                 // Generate two people
                 people.add(new Person(names[0], new Person(names[1])));
-                people.add(people.get(i));
-                i += 2;
             } else {
                 // Generate one person
                 people.add(new Person(names[0]));
-                i++;
             }
+            i++;
         }
     }
 
