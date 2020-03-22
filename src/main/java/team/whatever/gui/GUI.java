@@ -9,9 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import team.whatever.util.PersonParser;
-import team.whatever.community.Person;
-import java.util.List;
+import team.whatever.util.SaveList;
 
 
 public class GUI extends JPanel implements ActionListener {
@@ -19,11 +19,13 @@ public class GUI extends JPanel implements ActionListener {
     protected JComboBox groupSize;
     protected JTextField customGroup;
     private String path;
+    private SaveList sl;
     public int theGroupSize;
     
     //create our GUI object to hold all of the buttons for interaction
     public GUI()
     {
+        sl = new SaveList();
         path = System.getProperty("user.dir");
         
         //Initialize our first button and its action
@@ -77,14 +79,17 @@ public class GUI extends JPanel implements ActionListener {
             try
             {
                 PersonParser ourPeople = new PersonParser(path + "\\data\\group1.txt");
-                List<Person> people = ourPeople.getPeople();
-                //then run the group algorithm with the list people
+                sl.saveGroupings(ourPeople.getPeople(), theGroupSize, path + "\\data\\groupSchedule.txt");
             }
-        
+            
+            //Catches any erros with running or saving and puts up a message
             catch (FileNotFoundException ex)  
             {
-                //pops up an error message if the file isn't found
                 JOptionPane.showMessageDialog(null, "File not found!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (IOException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Issue Saving!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
             }
          }
          
@@ -93,14 +98,17 @@ public class GUI extends JPanel implements ActionListener {
             try
             {
                 PersonParser ourPeople = new PersonParser(path + "\\data\\group2.txt");
-                List<Person> people = ourPeople.getPeople();
-                //then run the group algorithm with the list people
+                sl.saveGroupings(ourPeople.getPeople(), theGroupSize, path + "\\data\\groupSchedule.txt");
             }
-        
+            
+            //Catches any erros with running or saving and puts up a message
             catch (FileNotFoundException ex)  
             {
-                //pops up an error message if the file isn't found
                 JOptionPane.showMessageDialog(null, "File not found!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (IOException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Issue Saving!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
             }
          }
          
@@ -108,53 +116,56 @@ public class GUI extends JPanel implements ActionListener {
          {
             try
             {
-            PersonParser ourPeople = new PersonParser(path + "\\data\\group3.txt");
-            List<Person> people = ourPeople.getPeople();
-            //then run the group algorithm with the list people
+                PersonParser ourPeople = new PersonParser(path + "\\data\\group3.txt");
+                sl.saveGroupings(ourPeople.getPeople(), theGroupSize, path + "\\data\\groupSchedule.txt");
             }
-        
+            
+            //Catches any erros with running or saving and puts up a message
             catch (FileNotFoundException ex)  
             {
-                //pops up an error message if the file isn't found
                 JOptionPane.showMessageDialog(null, "File not found!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (IOException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Issue Saving!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
             }
          }
          else if ("CG".equals(e.getActionCommand()))
          {
             try
             {
-            PersonParser ourPeople = new PersonParser(path + "\\data\\" + customGroup.getText());
-            List<Person> people = ourPeople.getPeople();
-            //then run the group algorithm with the list people
+                PersonParser ourPeople = new PersonParser(path + "\\data\\" + customGroup.getText());
+                sl.saveGroupings(ourPeople.getPeople(), theGroupSize, path + "\\data\\groupSchedule.txt");
             }
-        
+            
+            //Catches any erros with running or saving and puts up a message
             catch (FileNotFoundException ex)  
             {
-                //pops up an error message if the file isn't found
                 JOptionPane.showMessageDialog(null, "File not found!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
             }
+            catch (IOException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Issue Saving!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
          }
-         
-         //Handles if the group size is updated
-         JComboBox update = (JComboBox)e.getSource();
-         if (update != null)
+         else
          {
-             if(update.getSelectedIndex() == 0)
-             {
-                 theGroupSize = 3;
-             }
-             else if (update.getSelectedIndex() == 1)
-             {
-                 theGroupSize = 4;
-             }
-             else if (update.getSelectedIndex() == 2)
-             {
-                 theGroupSize = 5;
-             }
-             else if (update.getSelectedIndex() == 3)
-             {
-                 theGroupSize = 6;
-             }
+            //Handles if the group size is updated
+            JComboBox update = (JComboBox)e.getSource();
+            if (update != null)
+            {
+                if(update.getSelectedIndex() == 0)
+                    theGroupSize = 3;
+
+                else if (update.getSelectedIndex() == 1)
+                    theGroupSize = 4;
+             
+                else if (update.getSelectedIndex() == 2)
+                    theGroupSize = 5;
+                
+                else if (update.getSelectedIndex() == 3)
+                    theGroupSize = 6;
+            }
          }
     }
     
