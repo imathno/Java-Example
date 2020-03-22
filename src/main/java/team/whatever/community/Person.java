@@ -5,6 +5,8 @@
  */
 package team.whatever.community;
 
+import java.util.Objects;
+
 public class Person {
 
 	//Initializing the name,spouse, and other important variables
@@ -31,17 +33,11 @@ public class Person {
 	public Person(String name) {
 		this(name, null);
 	}
-        
-        /**
-         * Get the name of the person
-         * thought this was necessary since name is a private member 
-         * with currently no method of accessing
-         * @return the name string
-         */
-        public String getName()
-        {
-                return NAME;
-        }
+  
+	public String getName() {
+		return this.NAME;
+	}
+
 	/**
 	 * Get the spouse of the person
 	 * @return the spouse person object or null
@@ -53,5 +49,18 @@ public class Person {
    //Returns if the person is married
 	public boolean hasSpouse() {
 		return MARRIED;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Person person = (Person) o;
+		return Objects.equals(NAME, person.NAME);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(NAME);
 	}
 }
