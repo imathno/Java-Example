@@ -9,58 +9,54 @@ import java.util.Objects;
 
 public class Person {
 
-	//Initializing the name,spouse, and other important variables
-	private final String NAME;
-	private final Person SPOUSE;
-	private final boolean MARRIED;
-	int unvisited;
+    // Constants that are unique to the Person.
+    private final String NAME;
+    private final Person SPOUSE;
+    private final boolean MARRIED;
 
-	/**
-	 * Just a simple constructor for the Person object
-	 * @param name of the person
-	 * @param spouse a person object of their spouse
-	 */
-	public Person(String name, Person spouse) {
-		this.NAME = name;
-		this.SPOUSE = spouse;
-		this.MARRIED = spouse != null;
-	}
+    /**
+     * Just a simple constructor for the Person object
+     *
+     * @param name   of the person
+     * @param spouse a person object of their spouse
+     */
+    public Person(String name, Person spouse) {
+        this.NAME = name;
+        this.SPOUSE = spouse;
+        this.MARRIED = spouse != null;
+    }
 
-	/**
-	 * Just a constructor for the single people
-	 * @param name of the person
-	 */
-	public Person(String name) {
-		this(name, null);
-	}
-  
-	public String getName() {
-		return this.NAME;
-	}
+    /**
+     * Just a constructor for the single people
+     *
+     * @param name of the person
+     */
+    public Person(String name) {
+        this(name, null);
+    }
 
-	/**
-	 * Get the spouse of the person
-	 * @return the spouse person object or null
-	 */
-	public Person getSpouse() {
-		return SPOUSE;
-	}
-	
-   //Returns if the person is married
-	public boolean hasSpouse() {
-		return MARRIED;
-	}
+    public String getName() {
+        return this.NAME;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Person person = (Person) o;
-		return Objects.equals(NAME, person.NAME);
-	}
+    public Person getSpouse() {
+        return SPOUSE;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(NAME);
-	}
+    public boolean hasSpouse() {
+        return MARRIED;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(NAME, person.NAME);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(NAME);
+    }
 }
