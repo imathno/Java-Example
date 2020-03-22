@@ -12,15 +12,16 @@ import org.jgrapht.Graph;
 
 public class Group {
 
-    private final int GROUP_SIZE = 5;
+    private int GROUP_SIZE;
 
     private final List<Person> COMMUNITY;
     private int numOfGroups;
     private int iterations;
 
-    public Group(List<Person> community) {
+    public Group(List<Person> community, int groupSize) {
         this.COMMUNITY = community;
         int actualSize = community.size();
+        GROUP_SIZE = groupSize;
 
         for (int i = 0; i < community.size(); i++) {
             if (community.get(i).hasSpouse())
