@@ -15,7 +15,7 @@ import java.util.List;
 class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        PersonParser parser = new PersonParser("data/group4.txt");
+        PersonParser parser = new PersonParser("data/group1.txt");
         Group group = new Group(parser.getPeople());
         Graph<List<List<Person>>, DefaultEdge> graph = group.generateGraph();
 

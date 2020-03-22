@@ -13,7 +13,7 @@ import org.jgrapht.Graph;
 
 public class Group {
 
-    private final int GROUP_SIZE = 2;
+    private final int GROUP_SIZE = 5;
 
     private final List<Person> COMMUNITY;
     private int numOfGroups;
@@ -54,37 +54,59 @@ public class Group {
                 List<Person> group = new ArrayList<>();
 
                 for (int k = 0; k < GROUP_SIZE; k++) {
-                    if (k == 0) {
-                        for (int l = 0; l < this.COMMUNITY.size(); l++) {
-                            if (!hasHosted.get(this.COMMUNITY.get(l)) && available.get(this.COMMUNITY.get(l))) {
-                                group.add(this.COMMUNITY.get(l));
-                                hasHosted.put(this.COMMUNITY.get(l), Boolean.TRUE);
-                                available.put(this.COMMUNITY.get(l), Boolean.FALSE);
-                                break;
-                            }
-                        }
-                    } else {
-                        for (int l = 0; l < this.COMMUNITY.size(); l++) {
-                            if (available.get(this.COMMUNITY.get(l))) {
-                                group.add(this.COMMUNITY.get(l));
-                                available.put(this.COMMUNITY.get(l), Boolean.FALSE);
-                                break;
+                    for (Person person : this.COMMUNITY) {
+                        if (available.get(person)) {
+                            if (k == 0) {
+                                if (!hasHosted.get(person) && available.get(person)) {
+                                    if (person.hasSpouse()) {
+                                        group.add(person);
+                                        group.add(person.getSpouse());
+                                        hasHosted.put(person, Boolean.TRUE);
+                                        available.put(person, Boolean.FALSE);
+                                        k++;
+                                        break;
+                                    } else {
+                                        group.add(person);
+                                        hasHosted.put(person, Boolean.TRUE);
+                                        available.put(person, Boolean.FALSE);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                if (!person.hasSpouse()) {
+                                    group.add(person);
+                                    available.put(person, Boolean.FALSE);
+                                    break;
+                                } else if (person.hasSpouse() && k + 2 < GROUP_SIZE) {
+                                    group.add(person);
+                                    available.put(person, Boolean.FALSE);
+                                    group.add(person.getSpouse());
+                                    k++;
+                                    break;
+                                }
+
                             }
                         }
                     }
                 }
+                iteration.add(group);
+            }
 
-                if (j == numOfGroups - 1 && available.containsValue(Boolean.TRUE)) {
-                    for (Person person : this.COMMUNITY) {
-                        if (available.get(person)) {
-                            group.add(person);
+            if (available.containsValue(Boolean.TRUE)) {
+                for (Person person : this.COMMUNITY) {
+                    if (available.get(person)) {
+                        if (person.hasSpouse()) {
+                            iteration.get(iteration.size() - 1).add(person);
+                            iteration.get(iteration.size() - 1).add(person.getSpouse());
+                            available.put(person, Boolean.FALSE);
+                        } else {
+                            iteration.get(iteration.size() - 1).add(person);
                             available.put(person, Boolean.FALSE);
                         }
                     }
                 }
-
-                iteration.add(group);
             }
+
             iterationNodes.add(iteration);
         }
 
@@ -101,69 +123,3 @@ public class Group {
         return null;
     }
 }
-
-//    Graph<List<List<Person>>, DefaultEdge> finalGraph = new DefaultUndirectedGraph<>(DefaultEdge.class);
-//    List<List<List<Person>>> addMeToFinal = new ArrayList<>();
-//        this.notHosted = new ArrayList<>(COMMUNITY);
-//
-//        for (int i = 0; i < this.iterations; i++) {
-//        List<List<Person>> iterationList = new ArrayList<>();
-//        Map<String, Boolean> visiting = new HashMap<>();
-//
-//        for (int j = 0; j < COMMUNITY.size(); j++) {
-//        visiting.put(COMMUNITY.get(j).getName(), Boolean.FALSE);
-//        }
-//
-//        if (notHosted.size() == 1) {
-//        notHosted.add(COMMUNITY.get(0));
-//        }
-//        for (int j = 0; j < this.numOfGroups; j++) {
-//        List<Person> groupList = new ArrayList<>();
-//        groupList.add(0, notHosted.get(0));
-//        visiting.put(groupList.get(0).getName(), Boolean.TRUE);
-//        notHosted.remove(0);
-//
-//        for (int k = 1; k < this.GROUP_SIZE; k++) {
-//        for (Person person : this.COMMUNITY) {
-//        // Checks if the person is the host or is already visiting
-//        if (!visiting.get(person.getName())) {
-//        groupList.add(person);
-//        visiting.put(person.getName(), Boolean.TRUE);
-//        break;
-//        }
-//        }
-//        }
-//
-//        if (visiting.containsValue(Boolean.FALSE)) {
-//        for (Person person : this.COMMUNITY) {
-//        // Checks if the person is the host or is already visiting
-//        if (!visiting.get(person.getName())) {
-//        groupList.add(person);
-//        visiting.put(person.getName(), Boolean.TRUE);
-//        break;
-//        }
-//        }
-//        }
-//        iterationList.add(groupList);
-//        }
-//        addMeToFinal.add(iterationList);
-//        }
-//
-//        List<List<Person>> previousAdd = new ArrayList<List<Person>>();
-//        for (List<List<Person>> add : addMeToFinal) {
-////            if (previousAdd == null) {
-////                finalGraph.addVertex();
-////            } else {
-////                finalGraph.addVertex(add);
-////                finalGraph.addEdge(add, previousAdd);
-////            }
-////            previousAdd = add;
-//        for (List<Person> p : add) {
-//        for (Person a : p) {
-//        System.out.print(a.getName() + " ");
-//        }
-//        System.out.println();
-//        }
-//        System.out.println();
-//        }
-//        return null;
