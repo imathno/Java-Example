@@ -2,7 +2,6 @@ package team.whatever.algorithm;
 
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultUndirectedGraph;
-import org.jgrapht.graph.SimpleGraph;
 import team.whatever.community.Person;
 
 import java.util.ArrayList;
@@ -92,6 +91,7 @@ public class Group {
                 iteration.add(group);
             }
 
+            // Append the remaining people to the last group
             if (available.containsValue(Boolean.TRUE)) {
                 for (Person person : this.COMMUNITY) {
                     if (available.get(person)) {
@@ -106,20 +106,18 @@ public class Group {
                     }
                 }
             }
-
             iterationNodes.add(iteration);
         }
 
-        for (List<List<Person>> lp : iterationNodes) {
-            for (List<Person> p : lp) {
-                for (Person po : p) {
-                    System.out.print(po.getName() + " ");
-                }
-                System.out.println();
+        List<List<Person>> prevNode = null;
+        for (List<List<Person>> node : iterationNodes) {
+            generatedGraph.addVertex(node);
+            if (prevNode != null) {
+                generatedGraph.addEdge(node, prevNode);
             }
-            System.out.println();
+            prevNode = node;
         }
 
-        return null;
+        return generatedGraph;
     }
 }

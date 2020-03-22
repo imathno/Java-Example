@@ -2,14 +2,11 @@ package team.whatever;
 
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.DefaultUndirectedGraph;
-import org.jgrapht.traverse.DepthFirstIterator;
 import team.whatever.algorithm.Group;
 import team.whatever.community.Person;
 import team.whatever.util.PersonParser;
 
 import java.io.FileNotFoundException;
-import java.util.Iterator;
 import java.util.List;
 
 class Main {
